@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PinguaAI InsightBot</title>
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- LOADER -->
+    <!-- ========================= -->
+
+    <div id="loader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <h2>PinguaAI</h2>
+            <p>Loading Intelligent Assistant...</p>
+        </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- MAIN CONTAINER -->
+    <!-- ========================= -->
+
+    <div class="app-container">
+
+        <!-- ========================= -->
+        <!-- SIDEBAR -->
+        <!-- ========================= -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="logo-circle">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+
+                <div>
+                    <h2>PinguaAI</h2>
+                    <p>InsightBot</p>
+                </div>
+
+            </div>
+
+            <div class="sidebar-menu">
+
+                <button class="menu-btn active">
+                    <i class="fa-solid fa-comments"></i>
+                    Chat
+                </button>
+
+                <button class="menu-btn">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Analytics
+                </button>
+
+                <button class="menu-btn">
+                    <i class="fa-solid fa-database"></i>
+                    Knowledge Base
+                </button>
+
+                <button class="menu-btn">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </button>
+
+            </div>
+
+            <div class="sidebar-footer">
+
+                <button id="themeToggle">
+                    <i class="fa-solid fa-moon"></i>
+                    Dark Mode
+                </button>
+
+            </div>
+
+        </aside>
+
+        <!-- ========================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ========================= -->
+
+        <main class="main-content">
+
+            <!-- HEADER -->
+
+            <header class="top-header">
+
+                <div>
+                    <h1>PinguaAI InsightBot</h1>
+                    <p>
+                        Smart FAQ Assistant powered by NLP,
+                        Semantic Search and Machine Learning
+                    </p>
+                </div>
+
+                <div class="header-actions">
+
+                    <button id="exportBtn">
+                        <i class="fa-solid fa-download"></i>
+                        Export Chat
+                    </button>
+
+                    <button id="clearChatBtn">
+                        <i class="fa-solid fa-trash"></i>
+                        Clear Chat
+                    </button>
+
+                </div>
+
+            </header>
+
+            <!-- DASHBOARD -->
+
+            <section class="dashboard">
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+
+                    <h3 id="totalChats">0</h3>
+                    <p>Total Conversations</p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+
+                    <h3 id="avgConfidence">0%</h3>
+                    <p>Average Confidence</p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        <i class="fa-solid fa-face-smile"></i>
+                    </div>
+
+                    <h3 id="positiveRate">0</h3>
+                    <p>Positive Interactions</p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+
+                    <h3 id="knowledgeSize">0</h3>
+                    <p>Knowledge Entries</p>
+
+                </div>
+
+            </section>
+
+            <!-- CHAT SECTION -->
+
+            <section class="chat-section">
+
+                <div class="chat-header">
+
+                    <h2>
+                        <i class="fa-solid fa-robot"></i>
+                        AI Chat Assistant
+                    </h2>
+
+                    <div class="chat-controls">
+
+                        <button id="voiceBtn">
+                            <i class="fa-solid fa-microphone"></i>
+                        </button>
+
+                        <button id="speakBtn">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div id="chatBox" class="chat-box">
+
+                    <div class="bot-message">
+
+                        <div class="message-avatar">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+
+                        <div class="message-content">
+
+                            <p>
+                                Hello! I'm PinguaAI InsightBot.
+                                Ask me anything from the FAQ knowledge base.
+                            </p>
+
+                            <div class="message-meta">
+                                Confidence: 100%
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- TYPING INDICATOR -->
+
+                <div id="typingIndicator" class="typing-indicator">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+                <!-- INPUT -->
+
+                <div class="input-section">
+
+                    <input
+                        type="text"
+                        id="userInput"
+                        placeholder="Ask your question..."
+                    >
+
+                    <button id="sendBtn">
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- SUGGESTIONS -->
+
+            <section class="suggestions-section">
+
+                <h3>Suggested Questions</h3>
+
+                <div class="suggestions">
+
+                    <button class="suggestion-btn">
+                        How do I reset my password?
+                    </button>
+
+                    <button class="suggestion-btn">
+                        What is your refund policy?
+                    </button>
+
+                    <button class="suggestion-btn">
+                        How can I contact support?
+                    </button>
+
+                    <button class="suggestion-btn">
+                        How do I update my profile?
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- ANALYTICS -->
+
+            <section class="analytics-section">
+
+                <div class="analytics-header">
+
+                    <h2>
+                        <i class="fa-solid fa-chart-column"></i>
+                        Analytics Dashboard
+                    </h2>
+
+                </div>
+
+                <div class="analytics-grid">
+
+                    <div class="analytics-card">
+
+                        <h3>Sentiment Analysis</h3>
+
+                        <div class="sentiment-stats">
+
+                            <div>
+                                😊 Positive:
+                                <span id="positiveCount">0</span>
+                            </div>
+
+                            <div>
+                                😐 Neutral:
+                                <span id="neutralCount">0</span>
+                            </div>
+
+                            <div>
+                                😞 Negative:
+                                <span id="negativeCount">0</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="analytics-card">
+
+                        <h3>Most Asked Questions</h3>
+
+                        <ul id="topQuestions">
+
+                            <li>No data available</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- LEARNING MODE -->
+
+            <section class="learning-section">
+
+                <h2>
+                    <i class="fa-solid fa-lightbulb"></i>
+                    AI Learning Mode
+                </h2>
+
+                <p>
+
+                    Questions that PinguaAI cannot answer
+                    are automatically stored for future training.
+
+                </p>
+
+                <div class="learning-box">
+
+                    <ul id="unknownQuestions">
+
+                        <li>No unknown questions yet.</li>
+
+                    </ul>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- TOAST -->
+    <!-- ========================= -->
+
+    <div id="toast" class="toast">
+
+        Action completed successfully
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- FOOTER -->
+    <!-- ========================= -->
+
+    <footer>
+
+        <p>
+
+            © 2026 PinguaAI InsightBot
+
+        </p>
+
+        <p>
+
+            Powered by Flask • NLP • Machine Learning • Semantic Search
+
+        </p>
+
+    </footer>
+
+    <!-- ========================= -->
+    <!-- SCRIPT -->
+    <!-- ========================= -->
+
+    <script
+        src="{{ url_for('static', filename='js/app.js') }}"
+    ></script>
+
+</body>
+</html>
