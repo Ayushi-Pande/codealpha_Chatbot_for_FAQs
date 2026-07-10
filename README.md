@@ -355,7 +355,7 @@ Name: Ayushi Pandey
 
 GitHub: https://github.com/Ayushi-Pande
 
-LinkedIn: _______________________
+LinkedIn: www.linkedin.com/in/ayushi-pandey-ai
 
 Email: ayushipande222161@gmail.com
 
