@@ -351,13 +351,13 @@ This project is licensed under the MIT License.
 
 # 👨‍💻 Author
 
-Name: _______________________
+Name: Ayushi Pandey
 
-GitHub: _______________________
+GitHub: https://github.com/Ayushi-Pande
 
 LinkedIn: _______________________
 
-Email: _______________________
+Email: ayushipande222161@gmail.com
 
 ---
 
